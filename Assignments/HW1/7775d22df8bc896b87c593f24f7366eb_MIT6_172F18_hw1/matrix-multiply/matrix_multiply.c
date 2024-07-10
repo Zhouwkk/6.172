@@ -75,7 +75,7 @@ void print_matrix(const matrix* m) {
 
 // Multiply matrix A*B, store result in C.
 int matrix_multiply_run(const matrix* A, const matrix* B, matrix* C) {
-  
+ 
   tbassert(A->cols == B->rows,
         "A->cols = %d, B->rows = %d\n", A->cols, B->rows);
   tbassert(A->rows == C->rows,
