@@ -50,7 +50,8 @@ int main(int argc, char** argv) {
   matrix* B;
   matrix* C;
 
-  const int kMatrixSize = 4;
+ // const int kMatrixSize = 4;
+ const int kMatrixSize = 1000;
 
 
   // Parse command line arguments
@@ -129,6 +130,7 @@ int main(int argc, char** argv) {
     print_matrix(B);
   }
 
+
   fprintf(stderr, "Running matrix_multiply_run()...\n");
 
   fasttime_t time1 = gettime();
@@ -151,5 +153,7 @@ int main(int argc, char** argv) {
     printf("Elapsed execution time: %f sec\n", elapsed);
   }
 
-  return 0;
+  free_matrix(A);
+  free_matrix(B);
+  free_matrix(C);
 }

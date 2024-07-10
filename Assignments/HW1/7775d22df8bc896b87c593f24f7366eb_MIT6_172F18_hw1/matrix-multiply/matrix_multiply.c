@@ -37,7 +37,6 @@
 // Allocates a row-by-cols matrix and returns it
 matrix* make_matrix(int rows, int cols) {
   matrix* new_matrix = malloc(sizeof(matrix));
-
   // Set the number of rows and columns
   new_matrix->rows = rows;
   new_matrix->cols = cols;
@@ -83,14 +82,28 @@ int matrix_multiply_run(const matrix* A, const matrix* B, matrix* C) {
   tbassert(B->cols == C->cols,
            "B->cols = %d, C->cols = %d\n", B->cols, C->cols);
   
+// original
+ //for (int i = 0; i < A->rows; i++) {
+    //for (int j = 0; j < B->cols; j++) {
+	//C->values[i][j] = 0;  // initial the elements of matrix c
+      //for (int k = 0; k < A->cols; k++) {
+        //C->values[i][j] += A->values[i][k] * B->values[k][j];
+      //}
+    //}
+  //}
 
+// swap loop j, k
   for (int i = 0; i < A->rows; i++) {
-    for (int j = 0; j < B->cols; j++) {
-      for (int k = 0; k < A->cols; k++) {
+    for (int k = 0; k < A->cols; k++) {
+      for (int j = 0; j < B->cols; j++) {
+	if (k == 0){
+        C->values[i][j] = 0;  // initial the elements of matrix c
+	}
         C->values[i][j] += A->values[i][k] * B->values[k][j];
       }
     }
   }
+
 
   return 0;
 }
